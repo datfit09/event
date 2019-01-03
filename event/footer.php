@@ -13,22 +13,31 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
+	<footer id="colophon" class="site-footer" style="<?php footer_style(); ?>">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', '_s' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', '_s' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', '_s' ), '_s', '<a href="https://automattic.com/">Automattic</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+            <div class="join-now" style="<?php event_page_footer_background(); ?>">
+                <div class="container">
+                    <p><?php echo esc_html( get_option( 'footer_description' ) ); ?></p>
+                    <h3><?php echo esc_html( get_option( 'footer_title' ) ); ?></h3>
+                    <button>RESERVE MY SEAT!</button>
+                </div>
+            </div>
+
+			<div class="ft-end" style="<?php footer_end_style(); ?>">
+                <div class="container">
+                    <div class="ft-copyright">
+                        <div class="copyright">
+                            <?php echo esc_html( get_option( 'footer_left', 'Copyright' ) ); ?>
+                        </div>
+                        <div class="FAQ">
+                            <?php echo wp_kses_post( get_option( 'footer_right', 'FAQ' ) ); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</footer>
+</div>
 
 <?php wp_footer(); ?>
 

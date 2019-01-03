@@ -23,7 +23,7 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php _s_post_thumbnail(); ?>
+	<?php event_post_thumbnail(); ?>
 
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>

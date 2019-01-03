@@ -1,9 +1,16 @@
-.main-navigation {
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
+.container_header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
 
+.site-branding {
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.main-navigation {
+	justify-content: flex-end;
 	ul {
 		display: none;
 		list-style: none;
@@ -52,6 +59,10 @@
 	li {
 		float: left;
 		position: relative;
+        background-color: #fff;
+        padding-left: 40px;
+        padding-top: 20px;
+        height: 80px;
 
 		&:hover > a,
 		&.focus > a {
@@ -61,6 +72,8 @@
 	a {
 		display: block;
 		text-decoration: none;
+        text-transform: uppercase;
+        transform: 0.3s;
 	}
 
 	.current_page_item > a,
@@ -105,3 +118,4 @@
 		width: 50%;
 	}
 }
+

@@ -7,6 +7,16 @@
  * @package _s
  */
 
+/**
+*THEME_URI = lay duong dan thu muc theme.
+*/
+define( 'THEME_URI', get_template_directory_uri() . '/' );
+define( 'THEME_DIR', get_template_directory() . '/' );
+
+// Chi duong dan do_action den Template hooks.
+require_once THEME_DIR . 'inc/widgets/class-widget-recent-post-thumbnail.php';
+
+
 if ( ! function_exists( '_s_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -65,6 +75,14 @@ if ( ! function_exists( '_s_setup' ) ) :
 			'default-image' => '',
 		) ) );
 
+
+        // Add Widget Autos_Recent_Post_Thumnbail for user.
+        function wpb_load_widget() {
+            register_widget( 'Autos_Recent_Post_Thumnbail' );
+        }
+        add_action( 'widgets_init', 'wpb_load_widget' );      
+        
+
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
@@ -91,9 +109,6 @@ add_action( 'after_setup_theme', '_s_setup' );
  * @global int $content_width
  */
 function _s_content_width() {
-	// This variable is intended to be overruled from themes.
-	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	$GLOBALS['content_width'] = apply_filters( '_s_content_width', 640 );
 }
 add_action( 'after_setup_theme', '_s_content_width', 0 );
@@ -104,17 +119,20 @@ add_action( 'after_setup_theme', '_s_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function _s_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', '_s' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', '_s' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+	register_sidebar( 
+        array(
+    		'name'          => esc_html__( 'Sidebar', '_s' ),
+    		'id'            => 'sidebar-1',
+    		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+    		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    		'after_widget'  => '</section>',
+    		'before_title'  => '<h2 class="widget-title">',
+    		'after_title'   => '</h2>',
 	) );
 }
 add_action( 'widgets_init', '_s_widgets_init' );
+
+
 
 /**
  * Enqueue scripts and styles.
@@ -164,4 +182,103 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
+}
+
+// Footer style.
+if ( ! function_exists( 'footer_style' ) ) {
+    function footer_style() {
+        $color    = get_option( 'footer_color' );
+        $bg_color = get_option( 'footer_background' );
+
+        $style = 'color: ' . $color . ';';
+        $style .= 'background-color: ' . $bg_color;
+
+        echo $style;
+    }
+}
+
+// Footer End style.
+if ( ! function_exists( 'footer_end_style' ) ) {
+    function footer_end_style() {
+        $color    = get_option( 'footer_end_color', '#000' );
+        $bg_color = get_option( 'footer_end_background', '#f5f5f5' );
+
+        $style = 'color: ' . $color . ';';
+        $style .= 'background-color: ' . $bg_color;
+
+        echo $style;
+    }
+}
+
+// Rename title page single cho page blog.
+if ( ! function_exists( 'event_title_blog' ) ) {
+    function event_title_blog() {
+        $title     = get_option( 'blog_title' );
+        if ( is_singular( 'post' ) ) {
+            $title = get_the_title();
+        }
+        ?>
+        <div class="block">
+            <h1 class="blog-title" style="<?php blog_title_style(); ?>">
+                <?php echo wp_kses_post( $title ); ?>
+            </h1>
+        </div>
+        <?php
+    }
+}
+
+// Add description 
+if ( ! function_exists( 'event_description_blog' ) ) {
+    function event_description_blog() {
+        $title     = get_option( 'description_blog' );
+        if ( is_singular( 'post' ) ) {
+            $title = get_the_title();
+        }
+        ?>
+            <h2 class="blog-title" style="<?php blog_title_style(); ?>">
+                <?php echo wp_kses_post( $title ); ?>
+            </h2>
+        <?php
+    }
+}
+
+// Color Blog Title.
+if ( ! function_exists( 'blog_title_style' ) ) {
+    function blog_title_style() {
+        $color    = get_option( 'blog_color', '#000' );
+
+        $style = 'color: ' . $color . ';';
+        echo $style;
+    }
+}
+
+
+// Replace image background Header.
+if ( ! function_exists( 'event_page_header_background' ) ) {
+    function event_page_header_background() {
+        $bg_header = get_option( 'page_header_background' );
+        $color     = get_option( 'background_header_image', '#303030' );
+        $style     = 'background-color: ' . $color . ';';
+
+        if ( false != $bg_header ) {
+            $style .= 'background-image: url(' . $bg_header . ')';
+        }
+
+        echo $style;
+    }
+}
+
+// Replace image background Footer.
+if ( ! function_exists( 'event_page_footer_background' ) ) {
+    function event_page_footer_background() {
+        $bg_header = get_option( 'page_footer_background' );
+        $color     = get_option( 'background_footer_image', '#303030' );
+        $style     = 'background-color: ' . $color . ';';
+
+        if ( false != $bg_header ) {
+            $style .= 'background-image: url(' . $bg_header . ')';
+        }
+
+        echo $style;
+    }
 }
