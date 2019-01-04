@@ -4,14 +4,15 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _s
+ * @package event
  */
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php
+        <button class="post-format"><?php echo get_post_format(); ?></button>
+		<?php        
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
 		else :
@@ -19,32 +20,42 @@
 		endif;
 
         event_post_thumbnail();
+
         
         ?>
-
+        
 	</header>
 
 	
 
 	<div class="entry-content">
 		<?php
-		the_content( sprintf(
-			wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'event' ),
-				array(
-					'span' => array(
-						'class' => array(),
-					),
-				)
-			),
-			get_the_title()
-		) );
+		if ( is_singular() ) {
+            the_content( sprintf(
+                wp_kses(
+                    /* translators: %s: Name of current post. Only visible to screen readers */
+                    __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'event' ),
+                    array(
+                        'span' => array(
+                            'class' => array(),
+                        ),
+                    )
+                ),
+                get_the_title()
+            ) );
 
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'event' ),
-			'after'  => '</div>',
-		) );
+            wp_link_pages( array(
+                'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'event' ),
+                'after'  => '</div>',
+            ) );
+        } else {
+            the_excerpt();
+            ?>
+            <a class="read-more" href="<?php the_permalink(); ?>">
+                <?php esc_html_e( 'CONTINUE READING', 'event' ); ?>
+            </a>
+            <?php
+        }
 		?>
 	</div>
 
@@ -52,13 +63,14 @@
         ?>
         <div class="entry-meta">
             <?php
-            _s_posted_on();
-            _s_posted_by();
+            event_posted_on();
+            event_posted_by();
+            event_posted_comment();
+            event_posted_social();
             ?>
         </div>
+
+        <?php event_post_author(); ?>
     <?php endif; ?>
 
-	<footer class="entry-footer">
-		<?php _s_entry_footer(); ?>
-	</footer>
 </article><!-- #post-<?php the_ID(); ?> -->

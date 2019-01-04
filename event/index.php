@@ -24,11 +24,12 @@
 
                     endwhile;
 
-                    the_posts_navigation();
+                    event_pagination();
 
                 else :
 
                     get_template_part( 'template-parts/content', 'none' );
+                    
 
                 endif;
                 ?>

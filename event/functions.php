@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package _s
+ * @package event
  */
 
 /**
@@ -17,7 +17,7 @@ define( 'THEME_DIR', get_template_directory() . '/' );
 require_once THEME_DIR . 'inc/widgets/class-widget-recent-post-thumbnail.php';
 
 
-if ( ! function_exists( '_s_setup' ) ) :
+if ( ! function_exists( 'event_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -25,14 +25,14 @@ if ( ! function_exists( '_s_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function _s_setup() {
+	function event_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on _s, use a find and replace
-		 * to change '_s' to the name of your theme in all the template files.
+		 * If you're building a theme based on event, use a find and replace
+		 * to change event to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( '_s', get_template_directory() . '/languages' );
+		load_theme_textdomain( event, get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -54,7 +54,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', '_s' ),
+			'menu-1' => esc_html__( 'Primary', event ),
 		) );
 
 		/*
@@ -70,7 +70,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( '_s_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'event_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
@@ -80,7 +80,21 @@ if ( ! function_exists( '_s_setup' ) ) :
         function wpb_load_widget() {
             register_widget( 'Autos_Recent_Post_Thumnbail' );
         }
-        add_action( 'widgets_init', 'wpb_load_widget' );      
+        add_action( 'widgets_init', 'wpb_load_widget' );
+
+
+        // Post formats.
+        add_theme_support( 'post-formats' , array(
+            'aside',
+            'image',
+            'video',
+            'quote',
+            'link',
+            'gallery',
+            'status',
+            'audio',
+            'chat',
+        ) );  
         
 
 		// Add theme support for selective refresh for widgets.
@@ -99,7 +113,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 		) );
 	}
 endif;
-add_action( 'after_setup_theme', '_s_setup' );
+add_action( 'after_setup_theme', 'event_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -108,36 +122,48 @@ add_action( 'after_setup_theme', '_s_setup' );
  *
  * @global int $content_width
  */
-function _s_content_width() {
-	$GLOBALS['content_width'] = apply_filters( '_s_content_width', 640 );
+function event_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'event_content_width', 640 );
 }
-add_action( 'after_setup_theme', '_s_content_width', 0 );
+add_action( 'after_setup_theme', 'event_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function _s_widgets_init() {
+function event_widgets_init() {
 	register_sidebar( 
         array(
-    		'name'          => esc_html__( 'Sidebar', '_s' ),
+    		'name'          => esc_html__( 'Sidebar', event ),
     		'id'            => 'sidebar-1',
-    		'description'   => esc_html__( 'Add widgets here.', '_s' ),
+    		'description'   => esc_html__( 'Add widgets here.', event ),
     		'before_widget' => '<section id="%1$s" class="widget %2$s">',
     		'after_widget'  => '</section>',
     		'before_title'  => '<h2 class="widget-title">',
     		'after_title'   => '</h2>',
 	) );
+
+    register_sidebar(
+        array(
+            'name'          => esc_html__( 'Widget Subscribe', event ),
+            'id'            => 'subscribe-widget',
+            'description'   => esc_html__( 'Add Widget Subscribe.', event ),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
 }
-add_action( 'widgets_init', '_s_widgets_init' );
+add_action( 'widgets_init', 'event_widgets_init' );
 
 
 
 /**
  * Enqueue scripts and styles.
  */
-function _s_scripts() {
+function event_scripts() {
 	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -148,7 +174,7 @@ function _s_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', '_s_scripts' );
+add_action( 'wp_enqueue_scripts', 'event_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -235,7 +261,7 @@ if ( ! function_exists( 'event_description_blog' ) ) {
             $title = get_the_title();
         }
         ?>
-            <h2 class="blog-title" style="<?php blog_title_style(); ?>">
+            <h2 class="description-blog" style="<?php blog_title_style(); ?>">
                 <?php echo wp_kses_post( $title ); ?>
             </h2>
         <?php
@@ -280,5 +306,32 @@ if ( ! function_exists( 'event_page_footer_background' ) ) {
         }
 
         echo $style;
+    }
+}
+
+// function pagination.
+if ( ! function_exists( 'event_pagination' ) ) {
+    function event_pagination() {
+    ?>
+    <div class="pagination-button">
+        <?php
+            $args = array(
+                'prev_text'          => __( '<', 'event' ),
+                'next_text'          => __( '>', 'event' ),
+            );
+
+            the_posts_pagination( $args );
+        ?>
+    </div>
+    <?php
+    }
+}
+
+// function post author.
+if ( ! function_exists( 'event_post_author' ) ) {
+    function event_post_author() {
+        if ( is_singular( 'post' ) ) {
+            get_template_part( 'author-bio' );
+        }
     }
 }

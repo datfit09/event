@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _s
+ * @package event
  */
 
 ?>
@@ -16,8 +16,8 @@
 		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php
-			_s_posted_on();
-			_s_posted_by();
+			event_posted_on();
+			event_posted_by();
 			?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
@@ -30,6 +30,6 @@
 	</div><!-- .entry-summary -->
 
 	<footer class="entry-footer">
-		<?php _s_entry_footer(); ?>
+		<?php event_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

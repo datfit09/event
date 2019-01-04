@@ -21,3 +21,106 @@
 	clear: both;
 	margin: 0 0 1.5em;
 }
+
+article {
+    padding: 50px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.entry-meta {
+    display: block;
+    clear: both;
+    height: 55px;
+    background-color: #f3f4f0;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    .posted-on,
+    .byline,
+    .bycomment {
+        padding: 15px 20px;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #ebebeb;
+        height: 55px;
+        width: 25%;
+    }
+    .social-posted {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        li {
+            padding: 15px 5px;
+            float: left;
+        }
+    }
+}
+.meta-reply {
+    margin-right: 10px;
+}
+
+.read-more {
+    display: block;
+    text-decoration: underline;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 25px 0;
+    color: $color__link-visited;
+    font-weight: bolder;
+}
+
+.entry-title {
+    font-size: 24px;
+    color: $color__text-screen;
+}
+
+
+.pagination-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .nav-links {
+        display: flex;
+        clear: both;
+        margin-bottom: 100px;
+        font-weight: 700;
+        .page-numbers {
+            color: #333;
+            height: 40px;
+            width: 40px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color__background-hr;
+            margin: 3px;
+        }
+        .current {
+            border: 3px solid $color__background-hr;
+            background-color: $color__background-body;            
+        }
+    }
+}
+
+.nav-links{
+    .next .page-numbers,
+    .prev .page-numbers {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+/* Xóa chữ Search for: mặc định của Search bar */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
