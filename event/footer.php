@@ -19,7 +19,7 @@
                 <div class="container">
                     <p><?php echo esc_html( get_option( 'footer_description' ) ); ?></p>
                     <h3><?php echo esc_html( get_option( 'footer_title' ) ); ?></h3>
-                    <button>RESERVE MY SEAT!</button>
+                    <button><?php esc_html_e( 'RESERVE MY SEAT!', 'event' ); ?></button>
                 </div>
             </div>
 

@@ -8,13 +8,24 @@
  */
 
 /**
-*THEME_URI = lay duong dan thu muc theme.
+*THEME_URI = theme.
 */
 define( 'THEME_URI', get_template_directory_uri() . '/' );
 define( 'THEME_DIR', get_template_directory() . '/' );
 
-// Chi duong dan do_action den Template hooks.
+// link do_action den Template hooks.
 require_once THEME_DIR . 'inc/widgets/class-widget-recent-post-thumbnail.php';
+
+// Customize.
+function event( $wp_customize ) {
+    $dir = glob( THEME_DIR . 'inc/customizer/*.php' );
+    foreach ( $dir as $file ) {
+        if ( file_exists( $file ) ) {
+            require_once $file;
+        }
+    }
+}
+add_action( 'customize_register', 'event' );
 
 
 if ( ! function_exists( 'event_setup' ) ) :
@@ -32,7 +43,7 @@ if ( ! function_exists( 'event_setup' ) ) :
 		 * If you're building a theme based on event, use a find and replace
 		 * to change event to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( event, get_template_directory() . '/languages' );
+		load_theme_textdomain( 'event', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -54,7 +65,7 @@ if ( ! function_exists( 'event_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', event ),
+			'menu-1' => esc_html__( 'Primary', 'event' ),
 		) );
 
 		/*
@@ -135,9 +146,9 @@ add_action( 'after_setup_theme', 'event_content_width', 0 );
 function event_widgets_init() {
 	register_sidebar( 
         array(
-    		'name'          => esc_html__( 'Sidebar', event ),
+    		'name'          => esc_html__( 'Sidebar', 'event' ),
     		'id'            => 'sidebar-1',
-    		'description'   => esc_html__( 'Add widgets here.', event ),
+    		'description'   => esc_html__( 'Add widgets here.', 'event' ),
     		'before_widget' => '<section id="%1$s" class="widget %2$s">',
     		'after_widget'  => '</section>',
     		'before_title'  => '<h2 class="widget-title">',
@@ -146,9 +157,9 @@ function event_widgets_init() {
 
     register_sidebar(
         array(
-            'name'          => esc_html__( 'Widget Subscribe', event ),
+            'name'          => esc_html__( 'Widget Subscribe', 'event' ),
             'id'            => 'subscribe-widget',
-            'description'   => esc_html__( 'Add Widget Subscribe.', event ),
+            'description'   => esc_html__( 'Add Widget Subscribe.', 'event' ),
             'before_widget' => '<section id="%1$s" class="widget %2$s">',
             'after_widget'  => '</section>',
             'before_title'  => '<h2 class="widget-title">',

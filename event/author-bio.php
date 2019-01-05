@@ -2,7 +2,7 @@
     <div class="comment-item">
         <div class="comment-avatar">            
             <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) , get_the_author_meta( 'user_nicename' ) ); ?>">
-                <?php echo get_avatar( get_the_author_meta( 'ID' ), $size = 80, $default = '', $alt = '', $args = null ); ?>
+                <?php echo get_avatar( get_the_author_meta( 'ID' ), $size = 100, $default = '', $alt = '', $args = null ); ?>
             </a>
         </div>
         <div class="comment-content">

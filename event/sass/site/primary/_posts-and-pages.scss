@@ -39,23 +39,29 @@ article {
     .bycomment {
         padding: 15px 20px;
         float: left;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         border-right: 1px solid #ebebeb;
         height: 55px;
         width: 25%;
     }
     .social-posted {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         li {
             padding: 15px 5px;
             float: left;
         }
     }
 }
+
+.social-posted {
+    li {
+        float: left;
+        margin: 0 5px;
+    }
+}
+
+
+
 .meta-reply {
     margin-right: 10px;
 }
