@@ -69,7 +69,9 @@
             ?>
         </div>
 
-        <?php event_post_author(); ?>
+        <?php if ( is_singular( 'post' ) ) {
+            get_template_part( 'author-bio' );
+        } ?>
     <?php endif; ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->

@@ -175,11 +175,11 @@ add_action( 'widgets_init', 'event_widgets_init' );
  * Enqueue scripts and styles.
  */
 function event_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'event-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'event-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'event-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -224,13 +224,13 @@ if ( class_exists( 'WooCommerce' ) ) {
 // Footer style.
 if ( ! function_exists( 'footer_style' ) ) {
     function footer_style() {
-        $color    = get_option( 'footer_color' );
-        $bg_color = get_option( 'footer_background' );
+        $color1    = get_option( 'footer_color' );
+        $bg_color1 = get_option( 'footer_background' );
 
-        $style = 'color: ' . $color . ';';
-        $style .= 'background-color: ' . $bg_color;
+        $style1 = 'color: ' . $color1 . ';';
+        $style1 .= 'background-color: ' . $bg_color1;
 
-        echo $style;
+        echo $style1;
     }
 }
 
@@ -247,13 +247,10 @@ if ( ! function_exists( 'footer_end_style' ) ) {
     }
 }
 
-// Rename title page single cho page blog.
+// Rename title page single for page blog.
 if ( ! function_exists( 'event_title_blog' ) ) {
     function event_title_blog() {
         $title     = get_option( 'blog_title' );
-        if ( is_singular( 'post' ) ) {
-            $title = get_the_title();
-        }
         ?>
         <div class="block">
             <h1 class="blog-title" style="<?php blog_title_style(); ?>">
@@ -309,7 +306,7 @@ if ( ! function_exists( 'event_page_header_background' ) ) {
 if ( ! function_exists( 'event_page_footer_background' ) ) {
     function event_page_footer_background() {
         $bg_header = get_option( 'page_footer_background' );
-        $color     = get_option( 'background_footer_image', '#303030' );
+        $color     = get_option( 'background_footer_image' );
         $style     = 'background-color: ' . $color . ';';
 
         if ( false != $bg_header ) {
@@ -335,14 +332,5 @@ if ( ! function_exists( 'event_pagination' ) ) {
         ?>
     </div>
     <?php
-    }
-}
-
-// function post author.
-if ( ! function_exists( 'event_post_author' ) ) {
-    function event_post_author() {
-        if ( is_singular( 'post' ) ) {
-            get_template_part( 'author-bio' );
-        }
     }
 }

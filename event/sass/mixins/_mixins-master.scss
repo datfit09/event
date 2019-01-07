@@ -28,7 +28,7 @@
 	width: map-get( $columns, $numberColumns ) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
 
-
+// Flex center
 @mixin flex-center {
     display: flex;
     justify-content: center;
