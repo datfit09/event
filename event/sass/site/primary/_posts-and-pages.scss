@@ -28,21 +28,21 @@ article {
 }
 
 .entry-meta {
+    position: relative;
     display: block;
     clear: both;
     height: 55px;
-    background-color: #f3f4f0;
-    border: 1px solid #ebebeb;
+    background-color: $color__background-meta;
+    border: 1px solid $color__border-button;
     border-radius: 4px;
     .posted-on,
     .byline,
     .bycomment {
-        padding: 15px 20px;
+        padding: 15px 0;
         float: left;
         @include flex-center;
-        border-right: 1px solid #ebebeb;
-        height: 55px;
         width: 25%;
+        border-right: 1px solid $color__border-button;
     }
     .social-posted {
         @include flex-center;
@@ -92,18 +92,18 @@ article {
         margin-bottom: 100px;
         font-weight: 700;
         .page-numbers {
-            color: #333;
+            color: $color__text-main;
             height: 40px;
             width: 40px;
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: $color__background-hr;
+            background-color: $color__background-button;
             margin: 3px;
         }
         .current {
-            border: 3px solid $color__background-hr;
+            border: 3px solid $color__background-button;
             background-color: $color__background-body;            
         }
     }

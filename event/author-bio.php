@@ -16,7 +16,7 @@
             <p class="comment-text">
                 <?php echo get_the_author_meta( 'description' ); ?>
             </p>
-            <?php echo event_posted_social(); ?>
+            <?php echo event_social_author(); ?>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
     <div class="container">
         <div class="row">
-            <div id="primary" class="col-md-9 content-area">
+            <div id="primary" class="col-md-8 content-area">
                 <main id="main" class="site-main">
 
         		<?php

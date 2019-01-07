@@ -95,6 +95,31 @@ if ( ! function_exists( 'event_posted_social' ) ) {
 }
 
 
+if ( ! function_exists( 'event_social_author' ) ) {
+    function event_social_author() {
+        ?>
+        <ul class="social-posted">
+            <li>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) , get_the_author_meta( 'user_nicename' ) ); ?>">
+                    <span class="fa fa-facebook social-button-content"></span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="https://twitter.com/home?status=<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) , get_the_author_meta( 'user_nicename' ) ); ?>">
+                    <span class="fa fa-twitter social-button-content"></span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) , get_the_author_meta( 'user_nicename' ) ); ?>&title=<?php the_title(); ?>">
+                    <span class="fa fa-linkedin-square social-button-content"></span>
+                </a>
+            </li>
+        </ul>
+        <?php 
+    }
+}
+
+
 if ( ! function_exists( 'event_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
@@ -156,12 +181,6 @@ if ( ! function_exists( 'event_entry_footer' ) ) :
 endif;
 
 if ( ! function_exists( 'event_post_thumbnail' ) ) :
-	/**
-	 * Displays an optional post thumbnail.
-	 *
-	 * Wraps the post thumbnail in an anchor element on index views, or a div
-	 * element when on single views.
-	 */
 	function event_post_thumbnail() {
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
@@ -169,7 +188,6 @@ if ( ! function_exists( 'event_post_thumbnail' ) ) :
 
 		if ( is_singular() ) :
 			?>
-
 			<div class="post-thumbnail">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->

@@ -2,7 +2,7 @@
 
     <div class="container">
         <div class="row">
-            <section id="primary" class="col-md-9 content-area">
+            <section id="primary" class="col-md-8 content-area">
                 <main id="main" class="site-main">
 
             		<?php if ( have_posts() ) : ?>

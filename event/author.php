@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="content">
-                <div class="col-md-9 blog">
+                <div class="col-md-8 blog">
                     <div id="main-content">
                         <?php
                         if( have_posts() ) : while( have_posts() ) :

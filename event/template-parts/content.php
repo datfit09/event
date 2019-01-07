@@ -21,7 +21,6 @@
 
         event_post_thumbnail();
 
-        
         ?>
         
 	</header>
