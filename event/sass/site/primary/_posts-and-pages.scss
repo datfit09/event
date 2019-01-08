@@ -104,10 +104,14 @@ article {
             @include flex-center;
             background-color: $color__background-button;
             margin: 3px;
+            &:hover {
+                border: 3px solid $color__background-button;
+                background-color: $color__background-body;
+            }
         }
         .current {
             border: 3px solid $color__background-button;
-            background-color: $color__background-body;            
+            background-color: $color__background-body;
         }
     }
 }

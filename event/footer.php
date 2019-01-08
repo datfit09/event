@@ -39,6 +39,8 @@
 	</footer>
 </div>
 
+<div class="menu-overlay"></div>
+
 <?php wp_footer(); ?>
 
 </body>

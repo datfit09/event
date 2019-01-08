@@ -46,15 +46,17 @@
                 <?php endif; ?>
             </div>
 
-            <nav id="site-navigation" class="main-navigation">
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'event' ); ?></button>
+            <div class="menu">
                 <?php
                 wp_nav_menu( array(
                     'theme_location' => 'menu-1',
-                    'menu_id'        => 'primary-menu',
+                    'container'      => 'nav',
+                    'menu_class'     => 'primary-menu menu',
                 ) );
                 ?>
-            </nav>   
+            </div>
+
+            <button class="toggle-menu-btn fa fa-bars"></button>
         </div>
 
         <div class="banner" style="<?php event_page_header_background(); ?>">
