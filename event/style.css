@@ -2020,6 +2020,13 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
+.post-format {
+  padding: 0 2px;
+  background-color: #e7b740;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 .entry-content p {
   font-family: DroidSerif;
 }
@@ -2054,18 +2061,14 @@ article {
 }
 
 .entry-meta {
-  position: relative;
-  display: block;
-  clear: both;
-  height: 55px;
   background-color: #f3f4f0;
   border: 1px solid #ebebeb;
   border-radius: 4px;
+  height: 52px;
+  clear: both;
 }
 
-.entry-meta .posted-on,
-.entry-meta .byline,
-.entry-meta .bycomment {
+.entry-meta strong {
   padding: 15px 0;
   float: left;
   display: flex;
@@ -2076,19 +2079,23 @@ article {
 }
 
 .entry-meta .social-posted {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.entry-meta .social-posted li {
-  padding: 15px 5px;
-  float: left;
+  border-right: none;
+  margin-top: -7px;
 }
 
 .social-posted li {
   float: left;
   margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+  .entry-meta {
+    height: 104px;
+  }
+  .entry-meta strong {
+    border-bottom: 1px solid #ebebeb;
+    width: 50%;
+  }
 }
 
 .meta-reply {

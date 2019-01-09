@@ -1,4 +1,11 @@
 
+.post-format {
+    padding: 0 2px;
+    background-color: $color__background-button;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
 .entry-content {
     p {
         font-family: $font__tittle;
@@ -35,16 +42,12 @@ article {
 }
 
 .entry-meta {
-    position: relative;
-    display: block;
-    clear: both;
-    height: 55px;
     background-color: $color__background-meta;
     border: 1px solid $color__border-button;
     border-radius: 4px;
-    .posted-on,
-    .byline,
-    .bycomment {
+    height: 52px;
+    clear: both;
+    strong {
         padding: 15px 0;
         float: left;
         @include flex-center;
@@ -52,14 +55,12 @@ article {
         border-right: 1px solid $color__border-button;
     }
     .social-posted {
-        @include flex-center;
-        li {
-            padding: 15px 5px;
-            float: left;
-        }
+        border-right: none;
+        margin-top: -7px;
     }
 }
 
+// social author
 .social-posted {
     li {
         float: left;
@@ -67,7 +68,15 @@ article {
     }
 }
 
-
+@media ( max-width: 768px ) {
+    .entry-meta {
+        height: 104px;
+        strong {
+            border-bottom: 1px solid $color__border-button;
+            width: 50%;
+        }
+    }
+}
 
 .meta-reply {
     margin-right: 10px;

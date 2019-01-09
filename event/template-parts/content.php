@@ -11,7 +11,9 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-        <button class="post-format"><?php echo get_post_format(); ?></button>
+        <span class="post-format">
+            <?php echo get_post_format(); ?>
+        </span>
 		<?php        
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -62,11 +64,14 @@
         ?>
         <div class="entry-meta">
             <?php
-            event_posted_on();
-            event_posted_by();
-            event_posted_comment();
-            event_posted_social();
+            /**
+            *event_posted_on', 10
+            *event_posted_by', 20
+            *event_posted_comment', 30
+            *event_posted_social', 40
+            */
             ?>
+            <?php do_action( 'event_posted' ); ?>
         </div>
 
         <?php if ( is_singular( 'post' ) ) {

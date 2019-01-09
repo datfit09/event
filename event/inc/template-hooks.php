@@ -1,0 +1,1 @@
+<?php add_action( 'event_posted', 'event_posted_on', 10 );add_action( 'event_posted', 'event_posted_by', 20 );add_action( 'event_posted', 'event_posted_comment', 30 );add_action( 'event_posted', 'event_posted_social', 40 );?>

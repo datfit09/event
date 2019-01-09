@@ -5,7 +5,7 @@
  * navigation support for dropdown menus.
  */
 
-// An/hien menu tren mobile.
+// Remove menu on mobile.
 function toggleMenu() {
     var btn = jQuery( '.toggle-menu-btn' ),
         overlay = jQuery( '.menu-overlay' );
@@ -32,7 +32,7 @@ function toggleMenu() {
         toggleMenu();
     } );
 
-    // Menu tren mobile.
+    // Menu on mobile.
     jQuery(document.body).on('click', '.sidebar-menu ul a', function(e) {
         e.preventDefault();
         var t = jQuery(this);

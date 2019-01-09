@@ -13,7 +13,10 @@
 define( 'THEME_URI', get_template_directory_uri() . '/' );
 define( 'THEME_DIR', get_template_directory() . '/' );
 
-// link do_action den Template hooks.
+// link do_action to Hooks.
+require_once THEME_DIR . 'inc/template-hooks.php';
+
+// link do_action to Template hooks.
 require_once THEME_DIR . 'inc/widgets/class-widget-recent-post-thumbnail.php';
 
 // Customize.

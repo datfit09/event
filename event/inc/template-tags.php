@@ -28,7 +28,7 @@ if ( ! function_exists( 'event_posted_on' ) ) :
 			'<span class="meta-reply"><img src="' . $date_icon . '" class="icon-comment"></span> <a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
-		echo '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
+		echo '<strong class="posted-on">' . $posted_on . '</strong>'; // WPCS: XSS OK.
 
 	}
 endif;
@@ -42,12 +42,12 @@ if ( ! function_exists( 'event_posted_by' ) ) :
 			'<span class="meta-reply"><img src="' . $edit_icon . '" class="icon-comment"></span><span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
-		echo '<span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+		echo '<strong class="byline"> ' . $byline . '</strong>'; // WPCS: XSS OK.
 
 	}
 endif;
 
-// function post meta : date, comment. 
+// function post meta : comment. 
 if ( ! function_exists( 'event_posted_comment' ) ) {
     function event_posted_comment() {
         if ( 'link' == get_post_format() || 'quote' == get_post_format() ) {
@@ -57,14 +57,14 @@ if ( ! function_exists( 'event_posted_comment' ) ) {
             <?php
             $comment_icon = apply_filters( 'event_posted_on_icon', THEME_URI . 'assets/images/comment.png' );
             if ( comments_open() ):
-                echo '<span class="bycomment"><span class="meta-reply"><img src="' . $comment_icon . '" class="icon-comment"></span>';
+                echo '<strong class="bycomment"><span class="meta-reply"><img src="' . $comment_icon . '" class="icon-comment"></span>';
                     comments_popup_link(
                         __( 'Leave a comment', 'autos' ),
                         __( 'One comment', 'autos' ),
                         __( '% comments', 'autos' ),
                         __( 'Read all comments', 'autos' )
                     );
-                echo '</span>';
+                echo '</strong>';
             endif;
         ?>
     <?php }
@@ -73,7 +73,7 @@ if ( ! function_exists( 'event_posted_comment' ) ) {
 if ( ! function_exists( 'event_posted_social' ) ) {
     function event_posted_social() {
         ?>
-        <ul class="social-posted">
+        <strong class="social-posted">
             <li>
                 <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>">
                     <span class="fa fa-facebook social-button-content"></span>
@@ -89,7 +89,7 @@ if ( ! function_exists( 'event_posted_social' ) ) {
                     <span class="fa fa-linkedin-square social-button-content"></span>
                 </a>
             </li>
-        </ul>
+        </strong>
         <?php 
     }
 }
