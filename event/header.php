@@ -46,17 +46,16 @@
                 <?php endif; ?>
             </div>
 
-            <div class="menu">
-                <?php
-                wp_nav_menu( array(
-                    'theme_location' => 'menu-1',
-                    'container'      => 'nav',
-                    'menu_class'     => 'primary-menu menu',
-                ) );
-                ?>
-            </div>
+            <?php
+            wp_nav_menu( array(
+                'theme_location' => 'menu-1',
+                'container'      => 'nav',
+                'menu_class'     => 'primary-menu menu',
+            ) );
+            ?>
 
-            <button class="toggle-menu-btn fa fa-bars"></button>
+            <button id="pull" class="fa fa-bars"></button>
+            
         </div>
 
         <div class="banner" style="<?php event_page_header_background(); ?>">
