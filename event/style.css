@@ -1635,6 +1635,9 @@ a:hover, a:active {
     top: 0;
     left: 100%;
   }
+  #pull {
+    display: none;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1661,6 +1664,7 @@ a:hover, a:active {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    z-index: 1;
   }
   .menu a {
     text-align: left;
@@ -1689,12 +1693,6 @@ a:hover, a:active {
   }
 }
 
-@media (min-width: 992px) {
-  #pull {
-    display: none;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .sub-menu,
   .sub-menu .show {
@@ -1714,6 +1712,14 @@ a:hover, a:active {
     background-color: transparent;
     border: none;
     right: 0;
+    z-index: 5;
+  }
+}
+
+@media (max-width: 425px) {
+  .menu {
+    width: 100%;
+    margin-top: 20px;
   }
 }
 
