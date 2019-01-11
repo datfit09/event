@@ -1633,9 +1633,6 @@ a:hover, a:active {
   .primary-menu .sub-menu > li > ul {
     transform: translateX(0px);
     top: 0;
-    left: 110%;
-  }
-  .primary-menu .sub-menu > li:hover > ul {
     left: 100%;
   }
 }
@@ -1654,29 +1651,41 @@ a:hover, a:active {
 /*---------------------------Menu mobile Responsive 991px-----------------------------------------------*/
 @media (max-width: 991px) {
   .menu {
+    position: absolute;
+    width: 40%;
+    right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    text-align: left;
     transform: translateY(0);
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
   }
   .menu a {
-    border-bottom: 2px solid #565f65;
     text-align: left;
     display: block;
     padding: 10px 30px;
+    text-transform: uppercase;
+    word-wrap: break-word;
   }
   .menu li {
     display: block;
   }
-  .menu li a {
-    line-height: 20px;
-    color: #000;
-  }
-  .menu li a:hover {
-    color: #c3917d;
-  }
-  .topnav .menu li:before {
+  .menu li:before {
     content: none;
+  }
+  li.menu-item-has-children:after {
+    content: "\f107";
+    font-family: 'FontAwesome';
+    font-size: 12px !important;
+    top: 40%;
+    transform: translateX(-50%);
+    line-height: 1 !important;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 10px;
   }
 }
 
@@ -1687,15 +1696,15 @@ a:hover, a:active {
 }
 
 @media only screen and (max-width: 768px) {
+  .sub-menu,
+  .sub-menu .show {
+    display: none;
+  }
   nav {
     border-bottom: 0;
   }
-  nav ul {
-    height: auto;
-    display: none;
-  }
   .container_header {
-    position: relative;
+    margin: 20px 0;
   }
   #pull {
     position: absolute;
@@ -1705,7 +1714,6 @@ a:hover, a:active {
     background-color: transparent;
     border: none;
     right: 0;
-    top: 0;
   }
 }
 
