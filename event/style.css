@@ -1571,6 +1571,7 @@ a:hover, a:active {
     text-transform: uppercase;
   }
   .primary-menu > li ul {
+    min-width: 180px;
     opacity: 0;
     visibility: hidden;
     position: absolute;
@@ -1578,7 +1579,6 @@ a:hover, a:active {
     left: 0;
     margin-left: 0;
     background: #fff;
-    min-width: 180px;
     text-align: left;
     z-index: 5;
     transform: scaleY(0);
@@ -1631,23 +1631,12 @@ a:hover, a:active {
 
 @media (min-width: 992px) {
   .primary-menu .sub-menu > li > ul {
-    transform: translateX(0px);
+    transform: translateX(0);
     top: 0;
     left: 100%;
   }
   #pull {
     display: none;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container_header .site-branding {
-    flex-grow: 0;
-    margin-right: 40px;
-  }
-  .container_header button {
-    display: flex;
-    justify-content: center;
   }
 }
 
@@ -1659,11 +1648,7 @@ a:hover, a:active {
     margin-left: 0;
     background-color: #fff;
     text-align: left;
-    transform: translateY(0);
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 1;
+    display: none;
   }
   .menu a {
     text-align: left;
